@@ -1,0 +1,7 @@
+.idea/
+
+node_modules/
+
+.vitepress/
+!.vitepress/config.js
+package-lock.json
