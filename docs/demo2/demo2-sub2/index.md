@@ -43,4 +43,4 @@
     }
 </style>
 
-![Image](../assets/img/1.png)
+![Image](/assets/img/2.png)

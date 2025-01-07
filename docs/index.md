@@ -34,4 +34,4 @@
 # hello demo 首页主页面2
 
 [//]: # (![首页md文档中的demo图片]&#40;/img/2025-01-05_17-56-54-16.png&#41;)
-![Image](assets/img/1.png)
+![Image](/assets/img/2.png)

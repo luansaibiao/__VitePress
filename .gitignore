@@ -2,6 +2,7 @@
 
 node_modules/
 
-.vitepress/
+!dist/
 !.vitepress/config.js
+.vitepress/
 package-lock.json
