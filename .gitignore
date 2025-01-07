@@ -1,8 +1,10 @@
 .idea/
-
 node_modules/
-
-!dist/
-!.vitepress/config.js
-.vitepress/
 package-lock.json
+
+# 忽略 .vitepress 目录中的所有内容
+.vitepress/
+
+# 但不忽略 .vitepress/dist 和 .vitepress/config.js
+!.vitepress/dist/
+!.vitepress/config.js
