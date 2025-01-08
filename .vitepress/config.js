@@ -4,32 +4,30 @@ import {generateSidebar} from 'vitepress-sidebar';
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: '网页标签title',  // 浏览器顶部标签页上的title
-  head: [
+  title: '网页标签title1',  // 浏览器顶部标签页上的title
+  description: '这是一个用 VitePress 站点的文档站点',  // 该配置用于SEO使用,用于搜索引擎抓取摘要,被百度谷歌等搜索引擎收录(可被爬虫爬取到),前提是网站拥有一定质量,能被各大厂的搜索引擎收录
+  srcDir: 'docs',  // 指定项目的根目录,决定了VitePress从哪个目录开始构建站点的内容结构,并且设置后VitePress会从项目根目录开始查找文档文件
 
+  // 网站头部信息配置
+  head: [
     // 浏览器顶部标签页上的ico
     ['link', {rel: 'icon', href: `/assets/svg/favicon.svg`}],  // 浏览器顶部标签页上的ico
 
     // 百度统计
     ['script',
       {},
-      `
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
+      `var _hmt = _hmt || [];
+      (function() {var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?73a7cbb7690ab539776d3ee9a53a5533";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
-      `
+      })();`
     ]
   ],
 
-  description: '这是一个用 VitePress 站点的文档站点',  // 该配置用于SEO使用,用于搜索引擎抓取摘要,被百度谷歌等搜索引擎收录(可被爬虫爬取到),前提是网站拥有一定质量,能被各大厂的搜索引擎收录
-  srcDir: 'docs',  // 指定项目的根目录,决定了VitePress从哪个目录开始构建站点的内容结构,并且设置后VitePress会从项目根目录开始查找文档文件
-
   // 主题配置
   themeConfig: {
+
     logo: '/assets/img/2025-01-05 17-56-54.png',  // 网站使用的默认主题右上角logo
     siteTitle: '默认主题内的右上角title',
 
