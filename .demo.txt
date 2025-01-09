@@ -1,25 +1,81 @@
-对于 VitePress 用户来说，寻找一个既不需要游客登录又能允许评论后删除和编辑的评论系统是一个常见的需求。根据现有的资料，我们可以探讨几个适合 VitePress 的评论系统选项，并分析它们是否满足这些特定要求。
-1. Giscus
-Giscus 是基于 GitHub Discussions 的评论插件，它允许用户无需注册即可通过 GitHub 账号发表评论。虽然 Giscus 本身并不强制要求游客登录，但它的设计初衷是与 GitHub 社区紧密结合，因此实际上大多数情况下还是需要用户拥有 GitHub 账号才能参与评论
-6
-。不过，Giscus 提供了一个相对简单的配置过程，并且可以很好地集成到 VitePress 中。遗憾的是，标准的 Giscus 配置不允许未登录的用户发表评论，也不直接支持评论的删除或编辑功能。但是，如果你希望使用 Giscus 并且想要实现更高级的功能，你可以考虑自定义开发或者寻找第三方扩展来满足这些需求。
-2. Gitalk
-Gitalk 是另一个基于 GitHub Issues 的评论插件，它同样要求用户使用 GitHub 账号进行身份验证以发表评论。Gitalk 支持一些额外的功能，比如管理员可以通过 GitHub API 来管理和编辑评论
-10
-。然而，就像 Giscus 一样，Gitalk 也默认需要用户登录才能发表评论，这可能不符合你对“不需要游客登录”的要求。尽管如此，Gitalk 的灵活性较高，你可以尝试对其进行修改，以便更好地适应你的需求。
-3. Waline
-Waline 是一个现代化的开源评论系统，它不仅支持匿名评论（即不需要游客登录），还提供了强大的后台管理功能，包括但不限于评论的删除、编辑以及关键词过滤等
-5
-。Waline 的一大优势在于它可以轻松地与 VitePress 集成，并且由于其服务端架构，能够提供更高的安全性和更好的性能。此外，Waline 还支持多种通知方式，如邮件和微信公众号推送，这对于提高用户体验非常有帮助。更重要的是，Waline 的社区非常活跃，这意味着你可以更容易地找到技术支持和解决方案。
-4. Cusdis
-Cusdis 是一款轻量级的评论系统，它允许游客无需登录即可发表评论，这正好符合了你的需求之一。Cusdis 还支持社交登录选项，例如通过 GitHub 或 Google 账号登录，从而增加了便利性。对于评论的管理，Cusdis 提供了一定程度的支持，例如关键词屏蔽和验证码机制，但它的管理功能相比 Waline 可能会显得较为有限
-9
-。值得注意的是，Cusdis 也易于集成到 VitePress 中，而且它的部署过程相对简单，非常适合那些不想处理复杂服务器配置的开发者。
-结论
-在上述提到的几个评论系统中，Waline 和 Cusdis 更加符合你提出的“不需要游客登录并且评论完后可删除和编辑”的要求。特别是 Waline，它不仅支持匿名评论，还提供了全面的评论管理功能，使得管理员可以方便地对评论进行操作。如果你更加重视系统的完整性和长期维护，那么 Waline 可能是更好的选择；而如果你倾向于一个更轻量级的解决方案，并且对高级管理功能的需求不是特别强烈，那么 Cusdis 也是一个不错的选择。
-为了在 VitePress 中集成 Waline 或 Cusdis，你可以参考相关的文档和教程，确保按照正确的步骤完成安装和配置。例如，对于 Waline，你需要设置服务端环境变量来启用强制登录或其他安全措施，同时也要确保正确地将 Waline 组件嵌入到 VitePress 的页面布局中
-5
-。而对于 Cusdis，你可以利用其提供的 JavaScript SDK 或者直接通过 HTML 标签引入评论组件9
-。
-综上所述，选择合适的评论系统取决于你的具体需求和技术偏好。无论是 Waline 还是 Cusdis，都能够为 VitePress 站点带来丰富的交互体验，同时也为管理员提供了必要的工具来管理和维护评论内容。
-相关链接 · 15
+
+sidebar: generateSidebar({
+      // ============ [ RESOLVING PATHS ] ============
+      documentRootPath: '/docs',  // 指定文档根目录，默认是 './'
+      scanStartPath: null,         // 指定扫描的起始路径，默认是从 `documentRootPath` 开始
+      resolvePath: null,           // 自定义路径解析规则，默认是根据文件结构生成
+      basePath: '/demo2/',               // 侧边栏链接的基础路径，默认是 '/'
+
+      // ============ [ GROUPING ] ============
+      collapsed: false,            // 是否默认折叠侧边栏，默认是 `false`
+      collapseDepth: 2,            // 折叠的层级深度，默认是 2
+      rootGroupText: '侧边栏目录',   // 根级别的组标题，默认是 'Contents'
+      rootGroupLink: null,         // 根级别的组链接，默认是 `null`，即没有链接
+      rootGroupCollapsed: false,   // 根级别的组是否默认折叠，默认是 `false`
+
+      // ============ [ GETTING MENU TITLE ] ============
+      useTitleFromFileHeading:false,  // 是否从文件的第一个标题提取侧边栏项的标题，默认是 `true`
+      useTitleFromFrontmatter: false,  // 是否从 Frontmatter 中提取标题，默认是 `true`
+      useFolderLinkFromIndexFile: false,  // 是否使用 `index.md` 文件作为文件夹的链接，默认是 `true`
+      useFolderTitleFromIndexFile: false,  // 是否使用 `index.md` 文件中的标题作为文件夹的标题，默认是 `true`
+      frontmatterTitleFieldName: 'title',  // 指定 Frontmatter 中的标题字段，默认是 'title'
+
+      // ============ [ GETTING MENU LINK ] ============
+      useFolderLinkFromSameNameSubFile: false,  // 是否使用与文件夹同名的子文件作为链接，默认是 `false`
+      // useFolderLinkFromIndexFile: true,         // 是否使用 `index.md` 文件作为文件夹的链接，默认是 `true` (与GETTING MENU TITLE中的配置重复所以只能二选一,负责后者覆盖前者)
+      folderLinkNotIncludesFileName: false,     // 文件夹链接是否不包含文件名，默认是 `false`
+
+      // ============ [ INCLUDE / EXCLUDE ] ============
+      excludePattern: ['README.md', 'index.md'],  // 排除某些文件或文件夹，默认是排除 `README.md`
+      excludeFilesByFrontmatterFieldName: 'exclude',  // 根据 Frontmatter 中的字段排除文件，默认是 `exclude` (详情见vitepress对md文档内exclue的规则)
+      includeDotFiles: false,                    // 是否包含隐藏文件，默认是 `false`
+      includeEmptyFolder: false,                 // 是否包含空文件夹，默认是 `false`
+      includeRootIndexFile: false,               // 是否包含根目录下的 `index.md` 文件，默认是 `false`
+      includeFolderIndexFile: false,              // 是否包含文件夹下的 `index.md` 文件，默认是 `true`
+
+      // ============ [ STYLING MENU TITLE ] ============
+      hyphenToSpace: false,                       // 是否将连字符转换为空格，默认是 `true`
+      underscoreToSpace: false,                   // 是否将下划线转换为空格，默认是 `true`
+      capitalizeFirst: false,                    // 是否首字母大写，默认是 `false`
+      capitalizeEachWords: false,                // 是否每个单词首字母大写，默认是 `false`
+      keepMarkdownSyntaxFromTitle: true,        // 是否保留 Markdown 语法，默认是 `false`
+      prefixSeparator: '--',                      // 前缀分隔符，默认是 '.'
+      removePrefixAfterOrdering: false,           // 是否在排序后移除前缀，默认是 `false`
+
+      // ============ [ SORTING ] ============
+      manualSortFileNameByPriority: [],          // 手动指定文件的排序优先级，默认是空数组
+      sortFolderTo: null,                        // 指定文件夹的排序位置，默认是 `null`
+      sortMenusByName: true,                    // 是否按名称排序，默认是 `false`
+      sortMenusByFileDatePrefix: false,          // 是否按文件日期前缀排序，默认是 `false`
+      sortMenusByFrontmatterOrder: false,        // 是否按 Frontmatter 中的 `order` 字段排序，默认是 `false`
+      frontmatterOrderDefaultValue: 0,           // 当 `frontmatterOrder` 未指定时的默认值，默认是 0
+      sortMenusByFrontmatterDate: false,         // 是否按 Frontmatter 中的 `date` 字段排序，默认是 `false`
+      sortMenusOrderByDescending: false,         // 是否按降序排序，默认是 `false`
+      sortMenusOrderNumericallyFromTitle: false, // 是否按标题中的数字排序，默认是 `false`
+      sortMenusOrderNumericallyFromLink: false,  // 是否按链接中的数字排序，默认是 `false`
+
+      // ============ [ MISC ] ============
+      debugPrint: false,                          // 是否启用调试输出，默认是 `false`
+    })
+
+
+    sidebar: {
+      '/guide/': generateSidebar({
+        documentRootPath: '/docs',
+        rootGroupText: '指南', // 设置根级别的组标题为"指南"
+        basePath: '/guide/',   // 设置基础路径
+        excludePattern: ['README.md'], // 根据需要排除某些文件
+      }),
+      '/reference/': generateSidebar({
+        documentRootPath: '/docs',
+        rootGroupText: '参考手册', // 设置根级别的组标题为"参考手册"
+        basePath: '/reference/', // 设置基础路径
+        excludePattern: ['README.md'], // 根据需要排除某些文件
+      }),
+      '/': generateSidebar({
+        documentRootPath: '/docs',
+        rootGroupText: '首页内容', // 默认主页的顶级标题
+        basePath: '/',
+        excludePattern: ['README.md'],
+      })
+    },
