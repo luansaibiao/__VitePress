@@ -162,6 +162,42 @@ export default defineConfig({
             scanStartPath: '/demo1/'
           })
         }
+      ],
+
+      '/demo2/': [
+        {
+          text: 'demo2的侧边栏',
+          collapsed: false,
+          items: generateSidebar({
+            ...defaultSidebarConfig,
+            scanStartPath: '/demo2/',
+            excludePattern: ['demo2-sub1', 'demo2-sub2']
+          })
+        },
+        {
+          text: 'demo2-1的侧边栏',
+          collapsed: false,
+          items: generateSidebar({
+            ...defaultSidebarConfig,
+            scanStartPath: '/demo2/demo2-sub1/'
+          })
+        },
+        {
+          text: 'demo2-2的侧边栏',
+          collapsed: false,
+          items: generateSidebar({
+            ...defaultSidebarConfig,
+            scanStartPath: '/demo2/demo2-sub2/'
+          })
+        },
+        {
+          text: '这是demo侧边栏',
+          collapsed: false,
+          items: generateSidebar({
+            ...defaultSidebarConfig,
+            scanStartPath: '/demo2/'
+          })
+        }
       ]
     }
   }

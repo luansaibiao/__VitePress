@@ -29,12 +29,12 @@ const defaultSidebarConfig = {
   folderLinkNotIncludesFileName: false,     // 文件夹链接是否不包含文件名，默认是 `false`
 
   // ============ [ INCLUDE / EXCLUDE ] ============
-  excludePattern: ['README.md', 'index.md'],  // 排除某些文件或文件夹，默认是排除 `README.md`
+  excludePattern: ['README.md'],  // 排除某些文件或文件夹，默认是排除 `README.md`
   excludeFilesByFrontmatterFieldName: 'exclude',  // 根据 Frontmatter 中的字段排除文件，默认是 `exclude` (详情见vitepress对md文档内exclue的规则)
   includeDotFiles: false,                    // 是否包含隐藏文件，默认是 `false`
   includeEmptyFolder: false,                 // 是否包含空文件夹，默认是 `false`
-  includeRootIndexFile: true,               // 是否包含根目录下的 `index.md` 文件，默认是 `false`
-  includeFolderIndexFile: true,              // 是否包含文件夹下的 `index.md` 文件，默认是 `true`
+  includeRootIndexFile: false,               // 是否包含根目录下的 `index.md` 文件，默认是 `false`
+  includeFolderIndexFile: false,              // 是否包含文件夹下的 `index.md` 文件，默认是 `true`
 
   // ============ [ STYLING MENU TITLE ] ============
   hyphenToSpace: false,                       // 是否将连字符转换为空格，默认是 `true`
@@ -58,7 +58,7 @@ const defaultSidebarConfig = {
   sortMenusOrderNumericallyFromLink: false,  // 是否按链接中的数字排序，默认是 `false`
 
   // ============ [ MISC ] ============
-  debugPrint: false,                          // 是否启用调试输出，默认是 `false`
+  debugPrint: true,                          // 是否启用调试输出，默认是 `false`
 }
 
 export default defineConfig({
@@ -143,61 +143,26 @@ export default defineConfig({
     sidebar: {
       '/about/': [
         {
-          text: '关于的侧边栏',
-          collapsed: false,
-          items: generateSidebar({
-            ...defaultSidebarConfig,
-            scanStartPath: '/about/'
+      text: '关于的侧边栏',
+      collapsed: false,
+      items: generateSidebar({
+        ...defaultSidebarConfig,
+        documentRootPath: '/docs',
+        scanStartPath: '/about',
+        manualSortFileNameByPriority: [
+          'about/about-1',
+          'about/about-2',
+          'about/about-3'
+        ],
+        excludePattern: [],
+        basePath: '/',
+        sortMenusByName: false,
+        sortMenusByFileDatePrefix: false,
+        sortMenusByFrontmatterOrder: true,
+        frontmatterOrderDefaultValue: 999
           })
         }
       ],
-
-      '/demo1/': [
-        {
-          text: 'demo1的侧边栏',
-          collapsed: false,
-          items: generateSidebar({
-            ...defaultSidebarConfig,
-            scanStartPath: '/demo1/'
-          })
-        }
-      ],
-
-      '/demo2/': [
-        {
-          text: 'demo2的侧边栏',
-          collapsed: false,
-          items: generateSidebar({
-            ...defaultSidebarConfig,
-            scanStartPath: '/demo2/',
-            excludePattern: ['demo2-sub1', 'demo2-sub2']
-          })
-        },
-        {
-          text: 'demo2-1的侧边栏',
-          collapsed: false,
-          items: generateSidebar({
-            ...defaultSidebarConfig,
-            scanStartPath: '/demo2/demo2-sub1/'
-          })
-        },
-        {
-          text: 'demo2-2的侧边栏',
-          collapsed: false,
-          items: generateSidebar({
-            ...defaultSidebarConfig,
-            scanStartPath: '/demo2/demo2-sub2/'
-          })
-        },
-        {
-          text: '这是demo侧边栏',
-          collapsed: false,
-          items: generateSidebar({
-            ...defaultSidebarConfig,
-            scanStartPath: '/demo2/'
-          })
-        }
-      ]
     }
   }
 });
