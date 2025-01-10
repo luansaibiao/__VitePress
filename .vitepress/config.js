@@ -13,20 +13,19 @@ const defaultSidebarConfig = {
   // ============ [ GROUPING ] ============
   collapsed: false,            // 是否默认折叠侧边栏，默认是 `false`
   collapseDepth: 1,            // 折叠的层级深度，默认是 2
-  rootGroupText: '侧边栏',      // 根级别的组标题，默认是 'Contents'
+  rootGroupText: '',      // 根级别的组标题，默认是 'Contents'
   rootGroupLink: null,         // 根级别的组链接，默认是 `null`，即没有链接,如果设置'/guide/overview的话即表示点击分组跳转到该链接路径
   rootGroupCollapsed: false,   // 根级别的组是否默认折叠，默认是 `false`
 
   // ============ [ GETTING MENU TITLE ] ============
   useTitleFromFileHeading: false,  // 是否从文件的第一个标题提取侧边栏项的标题，默认是 `true`
-  useFolderLinkFromIndexFile: false,  // 是否使用 `index.md` 文件作为文件夹的链接，默认是 `true`
   useFolderTitleFromIndexFile: false,  // 是否使用 `index.md` 文件中的标题作为文件夹的标题，默认是 `true`
   frontmatterTitleFieldName: 'title',  // 指定 Frontmatter 中的标题字段，默认是 'title'
   useTitleFromFrontmatter: false,  // 是否从 Frontmatter 中提取标题，默认是 `true`
 
   // ============ [ GETTING MENU LINK ] ============
   useFolderLinkFromSameNameSubFile: false,  // 是否使用与文件夹同名的子文件作为链接，默认是 `false`
-  // useFolderLinkFromIndexFile: true,         // 是否使用 `index.md` 文件作为文件夹的链接，默认是 `true` (与GETTING MENU TITLE中的配置重复所以只能二选一,负责后者覆盖前者)
+  useFolderLinkFromIndexFile: true,         // 是否使用 `index.md` 文件作为文件夹的链接，默认是 `true`
   folderLinkNotIncludesFileName: false,     // 文件夹链接是否不包含文件名，默认是 `false`
 
   // ============ [ INCLUDE / EXCLUDE ] ============
@@ -34,8 +33,8 @@ const defaultSidebarConfig = {
   excludeFilesByFrontmatterFieldName: 'exclude',  // 根据 Frontmatter 中的字段排除文件，默认是 `exclude` (详情见vitepress对md文档内exclue的规则)
   includeDotFiles: false,                    // 是否包含隐藏文件，默认是 `false`
   includeEmptyFolder: false,                 // 是否包含空文件夹，默认是 `false`
-  includeRootIndexFile: false,               // 是否包含根目录下的 `index.md` 文件，默认是 `false`
-  includeFolderIndexFile: false,              // 是否包含文件夹下的 `index.md` 文件，默认是 `true`
+  includeRootIndexFile: true,               // 是否包含根目录下的 `index.md` 文件，默认是 `false`
+  includeFolderIndexFile: true,              // 是否包含文件夹下的 `index.md` 文件，默认是 `true`
 
   // ============ [ STYLING MENU TITLE ] ============
   hyphenToSpace: false,                       // 是否将连字符转换为空格，默认是 `true`
@@ -49,7 +48,7 @@ const defaultSidebarConfig = {
   // ============ [ SORTING ] ============
   manualSortFileNameByPriority: [],          // 手动指定文件的排序优先级，默认是空数组
   sortFolderTo: null,                        // 指定文件夹的排序位置，默认是 `null`
-  sortMenusByName: true,                    // 是否按名称排序，默认是 `false`
+  sortMenusByName: false,                    // 是否按名称排序，默认是 `false`
   sortMenusByFileDatePrefix: false,          // 是否按文件日期前缀排序，默认是 `false`
   sortMenusByFrontmatterOrder: false,        // 是否按 Frontmatter 中的 `order` 字段排序，默认是 `false`
   frontmatterOrderDefaultValue: 0,           // 当 `frontmatterOrder` 未指定时的默认值，默认是 0
@@ -142,55 +141,60 @@ export default defineConfig({
     ],
 
     sidebar: {
-
       '/about/': [
         {
+          text: '关于的侧边栏',
+          collapsed: false,
           items: generateSidebar({
             ...defaultSidebarConfig,
-            scanStartPath: '/about/',
-            rootGroupText: '关于的侧边栏',
+            scanStartPath: '/about/'
           })
         }
       ],
 
       '/demo1/': [
         {
+          text: 'demo1的侧边栏',
+          collapsed: false,
           items: generateSidebar({
             ...defaultSidebarConfig,
-            scanStartPath: '/demo1/',
-            rootGroupText: 'demo1的侧边栏'
+            scanStartPath: '/demo1/'
           })
         }
       ],
 
       '/demo2/': [
         {
+          text: 'demo2的侧边栏',
+          collapsed: false,
           items: generateSidebar({
             ...defaultSidebarConfig,
             scanStartPath: '/demo2/',
-            rootGroupText: 'demo2的侧边栏',
             excludePattern: ['demo2-sub1', 'demo2-sub2']
           })
         },
         {
+          text: 'demo2-1的侧边栏',
+          collapsed: false,
           items: generateSidebar({
             ...defaultSidebarConfig,
-            scanStartPath: '/demo2/demo2-sub1',
-            rootGroupText: 'demo2-1的侧边栏'
+            scanStartPath: '/demo2/demo2-sub1/'
           })
         },
         {
+          text: 'demo2-2的侧边栏',
+          collapsed: false,
           items: generateSidebar({
             ...defaultSidebarConfig,
-            scanStartPath: '/demo2/demo2-sub2',
-            rootGroupText: 'demo2-2的侧边栏'
+            scanStartPath: '/demo2/demo2-sub2/'
           })
         },
         {
+          text: '这是demo侧边栏',
+          collapsed: false,
           items: generateSidebar({
             ...defaultSidebarConfig,
-            scanStartPath: '/demo2/',
-            rootGroupText: 'demo2全部侧边栏'
+            scanStartPath: '/demo2/'
           })
         }
       ]
