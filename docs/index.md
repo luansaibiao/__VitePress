@@ -1,3 +1,5 @@
+# 首页主页面
+
 # 首页标题1
 11111112
 
@@ -31,9 +33,7 @@
 666666
 666666
 
-# hello demo 首页主页面2
-
-![Image](/assets/img/2.png)
+![Image](assets/img/2.png)
 
 
 
@@ -43,9 +43,9 @@
 <style>
     .demo {
         color:blue;
-        font-size:24px; 
+        font-size:50px; 
         font-weight:600;
     }
 </style>
 
-![Image](/assets/img/2.png)
+![Image](assets/img/2.png)
