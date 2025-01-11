@@ -2,6 +2,7 @@
   <Waline
     v-bind="walineConfig"
     :path="path"
+    @error="handleError"
   />
 </template>
 
@@ -40,4 +41,9 @@ const walineConfig = {
 
 // 获取当前页面路径
 const path = computed(() => useRoute().path);
+
+// 错误处理函数
+function handleError(error) {
+  console.error('Waline Error:', error);
+}
 </script>
