@@ -6,14 +6,14 @@ import {generateSidebar} from 'vitepress-sidebar';
 const defaultSidebarConfig = {
   // ============ [ RESOLVING PATHS ] ============
   documentRootPath: '/docs',   // 指定文档根目录，默认是 './'
-  scanStartPath: '/',         // 指定扫描的起始路径，默认是从 `documentRootPath` 开始 (指定从哪个路径开始扫描文件并根据扫描到的文件生成侧边栏)
+  scanStartPath: null,         // 指定扫描的起始路径，默认是从 `documentRootPath` 开始 (指定从哪个路径开始扫描文件并根据扫描到的文件生成侧边栏)
   resolvePath: null,           // 自定义路径解析规则，默认是根据文件结构生成
-  basePath: '/',               // 侧边栏链接的基础路径，默认是 '/'
+  basePath: null,               // 侧边栏链接的基础路径，默认是 '/'
 
   // ============ [ GROUPING ] ============
   collapsed: false,            // 是否默认折叠侧边栏，默认是 `false`
   collapseDepth: 1,            // 折叠的层级深度，默认是 2
-  rootGroupText: '',      // 根级别的组标题，默认是 'Contents'
+  rootGroupText: null,      // 根级别的组标题，默认是 'Contents'
   rootGroupLink: null,         // 根级别的组链接，默认是 `null`，即没有链接,如果设置'/guide/overview的话即表示点击分组跳转到该链接路径
   rootGroupCollapsed: false,   // 根级别的组是否默认折叠，默认是 `false`
 
@@ -32,7 +32,7 @@ const defaultSidebarConfig = {
   // ============ [ GETTING MENU TITLE ] ============
   useTitleFromFileHeading: false,  // 是否从文件的第一个标题提取侧边栏项的标题，默认是 `true`
   useFolderTitleFromIndexFile: false,  // 是否使用 `index.md` 文件中的标题作为文件夹的标题，默认是 `true`
-  frontmatterTitleFieldName: 'title',  // 指定 Frontmatter 中的标题字段，默认是 'title'
+  frontmatterTitleFieldName: null,  // 指定 Frontmatter 中的标题字段，默认是 'title'
   useTitleFromFrontmatter: false,  // 是否从 Frontmatter 中提取标题，默认是 `true`
 
   // ============ [ GETTING MENU LINK ] ============
@@ -42,7 +42,7 @@ const defaultSidebarConfig = {
 
   // ============ [ INCLUDE / EXCLUDE ] ============
   excludePattern: ['README.md', 'index.md'],  // 排除某些文件或文件夹，默认是排除 `README.md`
-  excludeFilesByFrontmatterFieldName: 'exclude',  // 根据 Frontmatter 中的字段排除文件，默认是 `exclude` (详情见vitepress对md文档内exclue的规则)
+  excludeFilesByFrontmatterFieldName: null,  // 根据 Frontmatter 中的字段排除文件，默认是 `exclude` (详情见vitepress对md文档内exclue的规则)
   includeDotFiles: false,                    // 是否包含隐藏文件，默认是 `false`
   includeEmptyFolder: false,                 // 是否包含空文件夹，默认是 `false`
   includeRootIndexFile: false,               // 是否包含根目录下的 `index.md` 文件，默认是 `false`
@@ -54,7 +54,7 @@ const defaultSidebarConfig = {
   capitalizeFirst: false,                    // 是否首字母大写，默认是 `false`
   capitalizeEachWords: false,                // 是否每个单词首字母大写，默认是 `false`
   keepMarkdownSyntaxFromTitle: false,        // 是否保留 Markdown 语法，默认是 `false`
-  prefixSeparator: '--',                      // 前缀分隔符，默认是 '.'
+  prefixSeparator: null,                      // 前缀分隔符，默认是 '.' (可以自定义为任意字符,比如'--',下方参数开启后,文件名中存在--的话,侧边栏之战是--后方的字符,不展示前方的字符)
   removePrefixAfterOrdering: false,           // 是否在排序后移除前缀，默认是 `false`
 
   // ============ [ MISC ] ============
